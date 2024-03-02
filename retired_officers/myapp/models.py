@@ -47,9 +47,9 @@ class Student(models.Model):
     # 性別
     sex = models.IntegerField(choices=SEX_CHOICES, blank=False, null=False)
     date_of_birth = models.DateField()
-    username = models.CharField(max_length=50 , blank = False, null = False , default = '' )
     identity = models.CharField(max_length=15 , blank = False, null = False , default = '' )
     address = models.CharField(max_length=150 , blank = False, null = False , default = '' )
+    postal_code = models.CharField(max_length=15 , blank = False, null = False , default = '' )
     home_phone = models.CharField(max_length=15 , blank = False, null = False , default = '' )
     mobile_phone = models.CharField(max_length=15 , blank = False, null = False , default = '' )
     email = models.EmailField()
@@ -60,7 +60,7 @@ class Student(models.Model):
     emergency_contact_relationship = models.CharField(max_length=15,blank = False, null = False , default = '')
 
     # 報考學歷
-    education = models.IntegerField(choices=EDUCATION_CHOICES, blank=False, null=False)
+    education = models.IntegerField(choices=EDUCATION_CHOICES, blank=False, null=False , default = 1)
     # 
     #兵籍號碼
     military_service_number = models.CharField(max_length=15,blank = False, null = False)
