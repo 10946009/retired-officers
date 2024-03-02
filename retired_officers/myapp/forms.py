@@ -10,6 +10,11 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password']
         # 設定css
+        labels = {
+            'username': '姓名',
+            'email': '電子郵件地址e-mail',
+            'password': '密碼',
+        }
         widgets = {
             'username': forms.TextInput(attrs={'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
@@ -21,13 +26,12 @@ class StudentForm(forms.ModelForm):
     class Meta:
         model = Student
         fields = '__all__'
-        exclude = ['user','Active']
+
+        exclude = ['user','activity']
         # 設定css
         labels = {
             'sex' : '性別',
             'date_of_birth': '出生年月日',
-            'name': '姓名',
-            'email': '電子郵件',
             'phone': '電話',
             'address': '地址',
             'postal_code' : '郵遞區號',
@@ -51,8 +55,6 @@ class StudentForm(forms.ModelForm):
         widgets = {
             'sex' : forms.Select(attrs={'class': 'form-control'}),
             'date_of_birth': forms.DateInput(attrs={'class': 'form-control'}),
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'address': forms.TextInput(attrs={'class': 'form-control'}),
             'postal_code' : forms.TextInput(attrs={'class': 'form-control'}),

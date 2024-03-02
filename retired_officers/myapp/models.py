@@ -14,6 +14,7 @@ class Admin(models.Model):
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    activity = models.ManyToManyField('Activity', through='Score')
     # 服役年資
     SERVICE_YEARS_CHOICES = [
         (1, '未滿3年者'),
@@ -52,7 +53,6 @@ class Student(models.Model):
     postal_code = models.CharField(max_length=15 , blank = False, null = False , default = '' )
     home_phone = models.CharField(max_length=15 , blank = False, null = False , default = '' )
     mobile_phone = models.CharField(max_length=15 , blank = False, null = False , default = '' )
-    email = models.EmailField()
 
     #緊急聯絡人
     emergency_contact = models.CharField(max_length=50,blank = False, null = False , default = '')
@@ -76,7 +76,7 @@ class Student(models.Model):
     identity_front = models.ImageField(blank = False, null = False)
     identity_back = models.ImageField(blank = False, null = False)
 
-    activity = models.ManyToManyField('Activity', through='Score')
+    
     def date_of_birth_tw(self):
         return self.date_of_birth.year - 1911, self.date_of_birth.month, self.date_of_birth.day
     class Meta:
