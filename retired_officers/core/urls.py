@@ -8,6 +8,7 @@ from django.shortcuts import render
 
 # import views directly from the app
 from myapp.views import index, register
+from admin_panel import urls as admin_panel_urls
 
 def handler404(request, exception):
     if request.user.is_authenticated:
@@ -22,6 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',index.index,name="index"),
     path('register/', register.register, name='register'),
+    path('admin_panel/', include(admin_panel_urls)),
+    # path('myapp/', include(myapp_urls)),
+
 ] 
 
 handler404 = handler404
