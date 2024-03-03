@@ -3,17 +3,17 @@
 {% load static %}
 {% block body %}
 <div class="container-fluid px-4">
-    <h1 class="mt-4">CRUD</h1>
+    <h1 class="mt-4">活動編輯</h1>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-        <li class="breadcrumb-item active">CRUD</li>
+        <!-- <li class="breadcrumb-item"><a href="/">Dashboard</a></li> -->
+        <li class="breadcrumb-item active">Activity Management</li>
     </ol>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
-            CRUD List
-            <a class="btn btn-sm btn-success" href="{% url 'create' %}"
-                style="padding: 8px; float: right; background-color: green; color: white;">ADD</a>
+            活動列表
+            <a class="btn btn-sm btn-success" href="{% url 'activity_create' %}"
+                style="padding: 8px; float: right; background-color: green; color: white;">新增</a>
         </div>
         <div class="card-body">
             {% for message in messages %}
@@ -24,31 +24,30 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Mobile Number</th>
-                        <th>Description</th>
-                        <th>Location</th>
-                        <th>Created At</th>
-                        <th>Action</th>
+                        <th>活動名稱</th>
+                        <th>活動開始時間</th>
+                        <th>活動結束時間</th>
+                        <th>報名開始時間</th>
+                        <th>報名結束時間</th>
+
                     </tr>
                 </thead>
                 <tbody>
-                    {% for member in members %}
+                    {% for activity in activities %}
                     <tr>
-                        <td>{{ member.id }}</td>
-                        <td>{{ member.firstname }}</td>
-                        <td>{{ member.lastname }}</td>
-                        <td>{{ member.mobile_number }}</td>
-                        <td>{{ member.description }}</td>
-                        <td>{{ member.location }}</td>
-                        <td>{{ member.created_at |date:"d-m-Y H:i:s" }}</td>
+                        <td>{{ activity.name }}</td>
+                        <td>{{ activity.activity_start_time }}</td>
+                        <td>{{ activity.activity_end_time }}</td>
+                        <td>{{ activity.sign_up_start_time }}</td>
+                        <td>{{ activity.sign_up_end_time }}</td>
+
                         <td>
-                            <a class="btn btn-sm btn-warning" href="edit/{{ member.id }}"> <span
-                                    class="fa fa-edit"></span> Edit</a>
-                            <a class="btn btn-sm btn-danger" href="delete/{{ member.id }}"><span
-                                    class="fa fa-trash"></span> Delete</a>
+                            <a class="btn btn-sm btn-warning"
+                                href="{% url 'activity_update' activity_id=activity.id %}"> <span
+                                    class="fa fa-edit"></span> 更新</a>
+                            <a class="btn btn-sm btn-danger"
+                                href="{% url 'activity_delete' activity_id=activity.id %}"><span
+                                    class="fa fa-trash"></span> 刪除</a>
                         </td>
                     </tr>
                     {% endfor %}
@@ -57,11 +56,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
-{% block javascript %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-<script src="{% static 'assets/demo/chart-area-demo.js' %}"></script>
-<script src="{% static 'assets/demo/chart-bar-demo.js' %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-<script src="{% static 'js/datatables-simple-demo.js' %}"></script>
 {% endblock %}
