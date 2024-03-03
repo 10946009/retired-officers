@@ -12,6 +12,8 @@ class Admin(models.Model):
         verbose_name = 'Admin'
         verbose_name_plural = 'Admins'
 
+class School(models.Model):
+    name = models.TextField(blank = False, null = False, default = '')
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     activity = models.ManyToManyField('Activity', through='Score')
@@ -45,7 +47,23 @@ class Student(models.Model):
         (1,'男'),
         (2,'女')
     ]
-    # 性別
+    DEPARTMENT_CHOICES = [
+        (1,'日間部'),
+        (2,'進修部')
+    ]
+    IS_GRADUATED_CHOICES = [
+        (1,'畢業'),
+        (2,'應屆畢業'),
+        (3,'未畢業(肄業或結業)')
+    ]
+    GRADUATED_YEAR_CHOICES = [
+        (1,'二年制'),
+        (2,'三年制'),
+        (3,'四年制'),
+        (4,'五年制')
+    ]
+
+    # 性別,出生年月日,身分證字號,地址,郵遞區號,家用電話,手機
     sex = models.IntegerField(choices=SEX_CHOICES, blank=False, null=False)
     date_of_birth = models.DateField()
     identity = models.CharField(max_length=15 , blank = False, null = False , default = '' )
@@ -54,25 +72,27 @@ class Student(models.Model):
     home_phone = models.CharField(max_length=15 , blank = False, null = False , default = '' )
     mobile_phone = models.CharField(max_length=15 , blank = False, null = False , default = '' )
 
-    #緊急聯絡人
+    # 畢業學校,畢肄業,畢業部別,畢業年制,同等學力,畢業系所組
+    graduated_school = models.ForeignKey(School, on_delete=models.SET_NULL, blank=False, null=True)
+    is_graduated = models.IntegerField(choices=IS_GRADUATED_CHOICES, blank=False, null=False)
+    graduated_department = models.IntegerField(choices=DEPARTMENT_CHOICES, blank=False, null=False)
+    graduated_year = models.IntegerField(choices=GRADUATED_YEAR_CHOICES, blank=False, null=False)
+    education = models.IntegerField(choices=EDUCATION_CHOICES, blank=False, null=False , default = 1)
+    school_department = models.CharField(max_length=50,blank = False, null = False , default = '')
+
+    #緊急聯絡人,緊急聯絡人電話,緊急聯絡人關係
     emergency_contact = models.CharField(max_length=50,blank = False, null = False , default = '')
     emergency_contact_phone = models.CharField(max_length=15,blank = False, null = False , default = '')
     emergency_contact_relationship = models.CharField(max_length=15,blank = False, null = False , default = '')
 
-    # 報考學歷
-    education = models.IntegerField(choices=EDUCATION_CHOICES, blank=False, null=False , default = 1)
-    # 
-    #兵籍號碼
+    # 服役年資 學歷 兵籍號碼 軍種 階級 退伍日期
     military_service_number = models.CharField(max_length=15,blank = False, null = False)
-    # 軍種
     military_service = models.CharField(max_length=15,blank = False, null = False)
-    # 階級
     military_rank = models.CharField(max_length=15,blank = False, null = False)
-    # 退伍期間
     military_retired_date = models.DateField(blank = False, null = False)
-    # 服役年資
     military_service_years = models.IntegerField(choices=SERVICE_YEARS_CHOICES, blank=False, null=False)
-    # 身分證正面反面
+
+    # 身分證正面 身分證反面
     identity_front = models.ImageField(blank = False, null = False)
     identity_back = models.ImageField(blank = False, null = False)
 
@@ -85,10 +105,11 @@ class Student(models.Model):
 
 # 活動
 class Activity(models.Model):
-    status = models.BooleanField(default = False)
     name = models.TextField(blank = False, null = False, default = '')
-    start_time = models.DateTimeField(blank=True, null=True)
-    end_time = models.DateTimeField(blank=True, null=True)
+    activity_start_time = models.DateTimeField(blank=True, null=True)
+    activity_end_time = models.DateTimeField(blank=True, null=True)
+    sign_up_start_time = models.DateTimeField(blank=True, null=True)
+    sign_up_end_time = models.DateTimeField(blank=True, null=True)
 
 
 class ScoreLabel(models.Model):
@@ -102,3 +123,4 @@ class Score(models.Model):
     score = models.IntegerField(blank = False, null = False)
     class Meta:
         unique_together = ('student', 'activity')
+
