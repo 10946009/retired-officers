@@ -1,49 +1,18 @@
-<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" >
+<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
     <div class="sb-sidenav-menu">
         <div class="nav">
             <div class="sb-sidenav-menu-heading">Core</div>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'activity_list'%}">
                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                Dashboard
+                活動管理
             </a>
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'student_activity_list'%}">
                 <div class="sb-nav-link-icon"><i class="fas fa-fw fa-database"></i></div>
-                CRUD App
+                學生資料管理
             </a>
-            <a class="nav-link" href="#">
-                <div class="sb-nav-link-icon"><i class="fas fa-fw fa-tables"></i></div>
-                File Upload
+            <a class="nav-link" href="{% url 'score_activity_list'%}">
+                <div class="sb-nav-link-icon"><i class="fas fa-fw fa-pen"></i></div>
+                學生成績管理
             </a>
-            <a class="nav-link" href="#">
-                <div class="sb-nav-link-icon"><i class="fas fa-fw fa-bullseye"></i></div>
-                Ajax Crud
-            </a>
-            <div class="sb-sidenav-menu-heading">Interface</div>
-            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                Users
-                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-            </a>
-            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="#">User List</a>
-                </nav>
-            </div>
-            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                Other
-                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-            </a>
-            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                    <a class="nav-link collapsed" href="#">
-                        CSV Upload
-                    </a>
-                    <a class="nav-link collapsed" href="#">
-                        Change Password
-                    </a>
-                </nav>
-            </div>
         </div>
-    </div>
 </nav>

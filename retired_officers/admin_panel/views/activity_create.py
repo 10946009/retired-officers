@@ -10,7 +10,7 @@ def activity_create(request):
         if form.is_valid():
             form.save()
 
-            return redirect('activity_manage')
+            return redirect('activity_list')
     else:
         form = ActivityForm()   
 

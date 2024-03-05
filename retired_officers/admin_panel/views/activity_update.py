@@ -12,7 +12,7 @@ def activity_update(request, activity_id):
         if form.is_valid():
             form.save() 
             
-            return redirect('activity_manage')
+            return redirect('activity_list')
     else:
         form = ActivityForm(instance=activity)
                     

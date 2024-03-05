@@ -8,7 +8,7 @@ def activity_delete(request, activity_id):
     if request.method == 'POST':
         activity.delete()
             
-        return redirect('activity_manage')
+        return redirect('activity_list')
                     
     return render(request, 'activity_delete.html', {'activity': activity})
 
