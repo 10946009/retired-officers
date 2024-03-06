@@ -10,6 +10,10 @@
 .rwd-table th,
 .rwd-table td {
     margin: 0.1em 0.1em;
+    
+}
+.rwd-table {
+    margin-bottom: 10em;
 }
 
 .rwd-table {
@@ -29,7 +33,6 @@
     font-weight: bold;
     width: 6.5em;
     display: inline-block;
-    
 }
 
 .rwd-table th,
@@ -42,7 +45,8 @@
     font-weight: bold;
 }
 
-@media (min-width: 480px) {
+
+@media (min-width: 600px) {
     .rwd-table td:before {
         display: none;
     }
@@ -51,6 +55,7 @@
     .rwd-table td {
         display: table-cell;
         padding: 0.25em 0.5em;
+        vertical-align: middle !important;
     }
 
     .rwd-table th:first-child,
@@ -63,8 +68,4 @@
         padding-right: 0;
     }
 
-    .rwd-table th,
-    .rwd-table td {
-        padding: 1em !important;
-    }
 }

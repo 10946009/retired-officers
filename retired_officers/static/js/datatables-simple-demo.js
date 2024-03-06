@@ -4,8 +4,10 @@ window.addEventListener('DOMContentLoaded', event => {
     
     const datatablesSimple = document.getElementById('datatablesSimple');
     let options = {
-        "info": false,
-        "paging": false,
+        info: false,
+        paging: false,
+        searchable: false,
+        
     };
     if (datatablesSimple) {
         new simpleDatatables.DataTable(datatablesSimple,options);
